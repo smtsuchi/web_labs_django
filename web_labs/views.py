@@ -143,12 +143,12 @@ def compile(request):
         # x = subprocess.check_output(f"python {str(settings.BASE_DIR)}\\web_labs\\test.py") 
         y=x.decode("utf-8")
         print("y",y)
-        total=y.split('\r\n\\#\\#\\#\\#\\#\r\n')
+        total=y.split('\n\\#\\#\\#\\#\\#\n')
         print(total)
-        total[-1]=total[-1][:-4]
+        total[-1]=total[-1][:-2]
         if len(total) == 1:
             result = ''
-            logs = [total[0].split('\r\n')[-1]]
+            logs = [total[0].split('\n')[-1]]
             assertionsCompleted = {i:False for i in range(len(assertions))}
         else:
             group1 = total[0].split('\r\n')[1:]
@@ -156,7 +156,7 @@ def compile(request):
             logs = group1[:-1]
             
             assertionGroup = total[-1]
-            eachAssertion = assertionGroup.split('\r\n')
+            eachAssertion = assertionGroup.split('\n')
             assertionsCompleted = {i:(True if eachAssertion[i]=="True" else False) for i in range(len(eachAssertion))}
             if len(assertionsCompleted) != len(assertions):
                 for i in range(len(assertions)):
