@@ -137,7 +137,7 @@ def compile(request):
             f.write(new_code)
             f.close()
                     
-            x = subprocess.check_output(f"python {str(settings.STATIC_ROOT)}/test.py") 
+            x = subprocess.check_output(f"python {str(settings.STATIC_ROOT)}/test.py", shell=True) 
         except Exception as err:
             print('error: ', err)
         # x = subprocess.check_output(f"python {str(settings.BASE_DIR)}\\web_labs\\test.py") 
