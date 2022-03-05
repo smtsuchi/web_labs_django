@@ -142,7 +142,9 @@ def compile(request):
             print('error: ', err)
         # x = subprocess.check_output(f"python {str(settings.BASE_DIR)}\\web_labs\\test.py") 
         y=x.decode("utf-8")
+        print("y",y)
         total=y.split('\r\n\\#\\#\\#\\#\\#\r\n')
+        print(total)
         total[-1]=total[-1][:-4]
         if len(total) == 1:
             result = ''
