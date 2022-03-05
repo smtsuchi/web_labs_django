@@ -129,13 +129,13 @@ def compile(request):
         #write file
         from random import randrange
         substr = str(randrange(16**7))
-        filePath = str(settings.BASE_DIR)+'\\web_labs\\'+'test'+'.py'
+        filePath = str(settings.STATIC_ROOT)+'\\test.py'
         print(filePath)
         f= open(filePath,'w')
         f.write(new_code)
         f.close()
                 
-        x = subprocess.check_output(f"python {str(settings.BASE_DIR)}\\web_labs\\test.py") 
+        x = subprocess.check_output(f"python {str(settings.STATIC_ROOT)}\\test.py") 
         y=x.decode("utf-8")
         total=y.split('\r\n\\#\\#\\#\\#\\#\r\n')
         total[-1]=total[-1][:-4]
