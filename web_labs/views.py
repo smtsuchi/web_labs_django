@@ -144,14 +144,15 @@ def compile(request):
         y=x.decode("utf-8")
         print("y",y)
         total=y.split('\n\\#\\#\\#\\#\\#\n')
-        print(total)
+        
         total[-1]=total[-1][:-2]
+        print(total)
         if len(total) == 1:
             result = ''
             logs = [total[0].split('\n')[-1]]
             assertionsCompleted = {i:False for i in range(len(assertions))}
         else:
-            group1 = total[0].split('\r\n')[1:]
+            group1 = total[0].split('\n')[1:]
             result = group1[-1]
             logs = group1[:-1]
             
