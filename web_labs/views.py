@@ -129,39 +129,44 @@ def compile(request):
         #write file
         from random import randrange
         substr = str(randrange(16**7))
-        filePath = str(settings.STATIC_ROOT)+'/test.py'
-        # filePath = str(settings.BASE_DIR)+'\\web_labs\\'+'test'+'.py'
-        print(filePath)
+        filePath = str(settings.STATIC_ROOT)+'/test.py' #for prod
+        # filePath = str(settings.BASE_DIR)+'\\web_labs\\'+'test'+'.py' #for local
+        
         try:
             f= open(filePath,'w')
             f.write(new_code)
             f.close()
                     
-            x = subprocess.check_output(f"python {str(settings.STATIC_ROOT)}/test.py", shell=True) 
+            x = subprocess.check_output(f"python {str(settings.STATIC_ROOT)}/test.py", shell=True) #for prod
+            # x = subprocess.check_output(f"python {str(settings.BASE_DIR)}\\web_labs\\test.py") #for local
         except Exception as err:
             print('error: ', err)
-        # x = subprocess.check_output(f"python {str(settings.BASE_DIR)}\\web_labs\\test.py") 
+        
         y=x.decode("utf-8")
-        print("y",y)
-        total=y.split('\n\\#\\#\\#\\#\\#\n')
+    
+        total=y.split('\n\\#\\#\\#\\#\\#\n') #for prod
+        # total=y.split('\r\n\\#\\#\\#\\#\\#\r\n') #for local
         
         total[-1]=total[-1][:-2]
-        print(total)
+        
         if len(total) == 1:
             result = ''
-            logs = [total[0].split('\n')[-1]]
+            logs = [total[0].split('\n')[-1]] #for prod
+            # logs = [total[0].split('\r\n')[-1]] #for local
             assertionsCompleted = {i:False for i in range(len(assertions))}
         else:
-            group1 = total[0].split('\n')[1:]
+            group1 = total[0].split('\n')[1:] #forprod
+            # group1 = total[0].split('\r\n')[1:] #for local
             result = group1[-1]
             logs = group1[:-1]
             
             assertionGroup = total[-1]
-            eachAssertion = assertionGroup.split('\n')
+            eachAssertion = assertionGroup.split('\n') #for prod
+            # eachAssertion = assertionGroup.split('\r\n') #for local
             assertionsCompleted = {i:(True if eachAssertion[i]=="True" else False) for i in range(len(eachAssertion))}
             if len(assertionsCompleted) != len(assertions):
                 for i in range(len(assertions)):
                     assertionsCompleted[i] = assertionsCompleted.get(i, False)       
-            print(assertionGroup) 
+            
         
     return JsonResponse({"result":result,"logs":logs,"assertions":assertionsCompleted}, safe=False)
