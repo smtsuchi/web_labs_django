@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',   
 ]
 
-CORS_ALLOWED_ORIGINS =['http://localhost:3000','http://127.0.0.1:3000','https://coding-summit.github.io','http://localhost:5500','http://127.0.0.1:5500', "https://web-labs-1109f.web.app"]
+CORS_ALLOWED_ORIGINS =['http://localhost:3000','http://127.0.0.1:3000','https://coding-summit.github.io','http://localhost:5500','http://127.0.0.1:5500', "https://web-labs-1109f.web.app", "https://cs-web-labs.web.app"]
 
 ROOT_URLCONF = 'mysite.urls'
 
