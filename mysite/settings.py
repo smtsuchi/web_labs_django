@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY') or 'trytoguessthis'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','codingsummit-web-labs.herokuapp.com', ]
+ALLOWED_HOSTS = ['127.0.0.1','cs-web-labs.onrender.com']
 
 
 # Application definition
@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',   
 ]
 
-CORS_ALLOWED_ORIGINS =['http://localhost:3000','http://127.0.0.1:3000','https://coding-summit.github.io','http://localhost:5500','http://127.0.0.1:5500', "https://web-labs-1109f.web.app", "https://cs-web-labs.web.app"]
+CORS_ALLOWED_ORIGINS =['http://localhost:3000','http://127.0.0.1:3000','https://coding-summit.github.io','http://localhost:5500','http://127.0.0.1:5500', "https://cs-web-labs.web.app"]
 
 ROOT_URLCONF = 'mysite.urls'
 
